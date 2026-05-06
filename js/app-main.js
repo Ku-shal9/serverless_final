@@ -151,53 +151,37 @@ async function generateImage() {
   const cleanPrompt = prompt.trim();
   const seed = Math.floor(Math.random() * 1000000);
 
-  /* Netlify functions only run on Netlify (or with `netlify dev`). On localhost they return 405. */
-  const isNetlify =
-    typeof window !== "undefined" &&
-    window.location &&
-    !/^localhost$|^127\.0\.0\.1$|^\[::1\]$/i.test(window.location.hostname);
+  try {
+    console.log("[Photo Galli] Calling server HF endpoint...");
+    const res = await fetch("/api/generate-image", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        prompt: cleanPrompt,
+        seed: seed,
+      }),
+    });
 
-  if (isNetlify) {
-    try {
-      console.log("[Photo Galli] Calling Netlify HF function...");
-      const res = await fetch("/.netlify/functions/generate-image", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          prompt: cleanPrompt,
-          seed: seed,
-        }),
-      });
-
-      if (res.ok) {
-        const data = await res.json();
-        if (data && data.imageBase64) {
-          imgUrl = "data:image/png;base64," + data.imageBase64;
-          imageSource = "Hugging Face";
-          modelName = data.model || "HF Model";
-          console.log(
-            `[Photo Galli] Success with Hugging Face via Netlify (${modelName})!`,
-          );
-        }
-      } else {
-        const text = await res.text();
-        console.warn(
-          "[Photo Galli] Netlify HF function error:",
-          res.status,
-          text,
+    if (res.ok) {
+      const data = await res.json();
+      if (data && data.imageBase64) {
+        imgUrl = "data:image/png;base64," + data.imageBase64;
+        imageSource = "Hugging Face";
+        modelName = data.model || "HF Model";
+        console.log(
+          `[Photo Galli] Success with Hugging Face via server endpoint (${modelName})!`,
         );
       }
-    } catch (err) {
-      console.warn(
-        "[Photo Galli] Netlify HF function failed:",
-        err && err.message ? err.message : err,
-      );
+    } else {
+      const text = await res.text();
+      console.warn("[Photo Galli] Server HF endpoint error:", res.status, text);
     }
-  } else {
-    console.log(
-      "[Photo Galli] Local dev: Netlify functions unavailable, using Puter.ai.",
+  } catch (err) {
+    console.warn(
+      "[Photo Galli] Server HF endpoint failed:",
+      err && err.message ? err.message : err,
     );
   }
 

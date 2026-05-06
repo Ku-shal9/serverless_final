@@ -1,6 +1,6 @@
 # Photo Galli
 
-AI-powered image generator with user authentication, rate limiting, and a retro-themed interface. Users can generate images from text prompts using Hugging Face models (via Netlify Functions) or Puter.ai as a fallback.
+AI-powered image generator with user authentication, rate limiting, and a retro-themed interface. Users can generate images from text prompts using Hugging Face models via Vercel serverless API routes or Puter.ai as a fallback.
 
 ---
 
@@ -24,8 +24,8 @@ AI-powered image generator with user authentication, rate limiting, and a retro-
 | Frontend  | HTML5, CSS3, Vanilla JavaScript                                        |
 | Styling   | Bootstrap 5 (grid/utilities), custom modular CSS                       |
 | Auth      | localStorage-based session, EmailJS for OTP emails                     |
-| Image API | Hugging Face Inference API (via Netlify Function), Puter.ai (fallback) |
-| Hosting   | Netlify (static site + serverless functions)                           |
+| Image API | Hugging Face Inference API (via Vercel API route), Puter.ai (fallback) |
+| Hosting   | Vercel (static site + serverless functions)                            |
 
 ---
 
@@ -97,9 +97,13 @@ AI_Image_Generator/
 |   |-- app.js              # Home page init
 |   |-- gallery.js          # Photos page
 |   |-- admin.js            # Admin panel
-|-- netlify/
-|   |-- functions/
-|       |-- generate-image.js   # HF proxy (server-side token)
+|-- api/
+|   |-- generate-image.js       # HF proxy (server-side token)
+|   |-- db-migrate.js           # DB migration endpoint
+|   |-- db-users.js             # Users API
+|   |-- db-generations.js       # Generation logs API
+|   |-- db-gallery.js           # Gallery API
+|   |-- db-prompts.js           # Prompt history API
 |-- README.md
 ```
 
@@ -107,8 +111,8 @@ AI_Image_Generator/
 
 ## Prerequisites
 
-- Node.js 18+ (for Netlify CLI, optional)
-- Netlify account (for deployment)
+- Node.js 18+
+- Vercel account (for deployment)
 - Hugging Face account (for HF_TOKEN)
 - EmailJS account (for OTP password reset)
 
@@ -125,35 +129,34 @@ AI_Image_Generator/
 
 2. Open `index.html` in a browser, or serve the folder with any static server (e.g. Live Server, `python -m http.server`).
 
-3. For full image generation locally (Hugging Face), use Netlify Dev:
+3. For full image generation locally (Hugging Face), use Vercel local dev:
    ```
-   npm install -g netlify-cli
-   netlify dev
+   npm install -g vercel
+   vercel dev
    ```
-   Then open the URL shown (e.g. http://localhost:8888).
+   Then open the URL shown (e.g. http://localhost:3000).
 
 ---
 
 ## Environment Variables
 
-Configure these in the Netlify dashboard (Site settings > Environment variables):
+Configure these in Vercel Project Settings > Environment Variables:
 
-| Variable | Description                   | Required                |
-| -------- | ----------------------------- | ----------------------- |
-| HF_TOKEN | Hugging Face API token (read) | Yes (for HF generation) |
+| Variable     | Description                            | Required                |
+| ------------ | -------------------------------------- | ----------------------- |
+| HF_TOKEN     | Hugging Face API token (read)          | Yes (for HF generation) |
+| DATABASE_URL | Neon Postgres connection string        | Yes (for DB features)   |
 
 EmailJS credentials are in `auth-const.js` (service ID, template ID, public key). For production, consider moving these to environment variables.
 
 ---
 
-## Deployment (Netlify)
+## Deployment (Vercel)
 
-1. Connect the repository to Netlify.
+1. Connect the repository to Vercel.
 2. Build settings: leave build command empty; publish directory: `.` (or project root).
-3. Add `HF_TOKEN` in Environment variables.
+3. Add `HF_TOKEN` and `DATABASE_URL` in Environment Variables.
 4. Deploy.
-
-Netlify auto-detects `netlify/functions/` for serverless functions.
 
 ---
 
@@ -168,8 +171,8 @@ Netlify auto-detects `netlify/functions/` for serverless functions.
 
 ## Local vs Production Behavior
 
-- **On Netlify**: Image generation uses the Netlify function, which calls Hugging Face with `HF_TOKEN`. If that fails, Puter.ai is used as fallback.
-- **On localhost**: The app skips the Netlify function (it returns 405) and uses Puter.ai directly. To test Hugging Face locally, run `netlify dev`.
+- **On Vercel**: Image generation uses `/api/generate-image`, which calls Hugging Face with `HF_TOKEN`. If that fails, Puter.ai is used as fallback.
+- **On localhost**: If the server route is unavailable, the app falls back to Puter.ai. To test Hugging Face locally, run `vercel dev`.
 
 ---
 

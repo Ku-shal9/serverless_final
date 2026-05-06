@@ -1,0 +1,14 @@
+{
+  "name": "ai-image-generator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Photo Galli with Neon Postgres persistence",
+  "scripts": {
+    "db:migrate": "node scripts/db-migrate.js",
+    "db:test": "node scripts/db-test.js"
+  },
+  "dependencies": {
+    "@neondatabase/serverless": "^0.10.4",
+    "dotenv": "^16.4.5"
+  }
+}
