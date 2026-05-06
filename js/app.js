@@ -18,6 +18,13 @@ document.addEventListener("DOMContentLoaded", function () {
   sidebarEmptyState = document.getElementById("sidebarEmptyState");
   clearHistoryBtn = document.getElementById("clearHistoryBtn");
 
+  // If server session exists, sync it into localStorage session first.
+  try {
+    if (typeof dbSyncSessionIntoLocalStorage === "function") {
+      dbSyncSessionIntoLocalStorage().catch(function () {});
+    }
+  } catch (_) {}
+
   requireAuth();
 
   loadTheme();

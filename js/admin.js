@@ -430,6 +430,13 @@ if (signOutBtn) {
 // ============================================================
 
 document.addEventListener("DOMContentLoaded", function () {
+  // If server session exists, sync it into localStorage session first.
+  try {
+    if (typeof dbSyncSessionIntoLocalStorage === "function") {
+      dbSyncSessionIntoLocalStorage().catch(function () {});
+    }
+  } catch (_) {}
+
   // Guard: must be admin
   requireAdmin();
 

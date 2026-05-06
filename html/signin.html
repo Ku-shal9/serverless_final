@@ -376,6 +376,7 @@
     <script src="../js/auth-user.js"></script>
     <script src="../js/auth-otp.js"></script>
     <script src="../js/auth.js"></script>
+    <script src="../js/auth-db.js"></script>
 
     <!-- Sign-in page logic -->
     <script>
@@ -441,9 +442,9 @@
         });
       }
 
-      // ---- Sign-up Form Submission ----
+      // ---- Sign-up Form Submission (DB-backed) ----
       if (signupForm) {
-        signupForm.addEventListener("submit", function (e) {
+        signupForm.addEventListener("submit", async function (e) {
           e.preventDefault();
           const username = document
             .getElementById("signupUsernameInput")
@@ -472,20 +473,25 @@
             return;
           }
 
-          const result = createUser(username, password, "user");
-          if (result.success) {
-            // Save email if provided
-            if (email && result.user) {
-              updateUserEmail(result.user.id, email);
-            }
-            const loginResult = signIn(username, password, "user");
-            if (loginResult.success) {
-              window.location.href = "../index.html";
-            }
-          } else {
+          signupError.classList.add("d-none");
+
+          const result = await dbSignUp(username, email, password);
+          if (!result.success) {
             signupError.textContent = result.message;
             signupError.classList.remove("d-none");
+            return;
           }
+
+          const loginResult = await dbLogin(username, password, "user");
+          if (loginResult.success) {
+            const localUser = upsertLocalUserFromDb(loginResult.user);
+            saveSession(localUser);
+            window.location.href = "../index.html";
+            return;
+          }
+
+          signupError.textContent = "Account created, but login failed. Please sign in.";
+          signupError.classList.remove("d-none");
         });
       }
 
@@ -495,7 +501,7 @@
       const usernameInput = document.getElementById("usernameInput");
       const passwordInput = document.getElementById("passwordInput");
 
-      signinForm.addEventListener("submit", function (e) {
+      signinForm.addEventListener("submit", async function (e) {
         e.preventDefault();
 
         const username = usernameInput.value.trim();
@@ -507,10 +513,12 @@
           return;
         }
 
-        // Attempt sign-in using auth module
-        const result = signIn(username, password, selectedRole);
+        // Attempt sign-in using DB auth
+        const result = await dbLogin(username, password, selectedRole);
 
         if (result.success) {
+          const localUser = upsertLocalUserFromDb(result.user);
+          saveSession(localUser);
           // Redirect based on role
           if (result.user.role === "admin") {
             window.location.href = "admin.html";

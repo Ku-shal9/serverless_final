@@ -25,6 +25,11 @@ function signIn(username, password, role) {
 }
 
 function signOut() {
+  // Best-effort server logout (DB session cookie)
+  try {
+    fetch("/api/auth-logout", { method: "POST" }).catch(function () {});
+  } catch (_) {}
+
   clearSession();
   const path = window.location.pathname || "";
 
