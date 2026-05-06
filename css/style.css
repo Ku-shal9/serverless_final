@@ -1,0 +1,32 @@
+/* ============================================================
+   Photo Galli - AI Image Generator
+   style.css - Main entry: imports all modular styles (do not delete)
+   ============================================================ */
+
+@import url("vars.css");
+@import url("base.css");
+@import url("navbar.css");
+@import url("layout.css");
+@import url("sidebar.css");
+@import url("cards.css");
+@import url("forms.css");
+@import url("buttons.css");
+@import url("loading.css");
+@import url("alerts.css");
+@import url("image.css");
+@import url("profile.css");
+@import url("gallery.css");
+@import url("modal.css");
+@import url("auth.css");
+@import url("about.css");
+@import url("admin.css");
+@import url("sections.css");
+@import url("rate.css");
+@import url("utils.css");
+@import url("effects.css");
+@import url("footer.css");
+@import url("payment.css");
+@import url("guest.css");
+@import url("anims.css");
+@import url("sidebar-btns.css");
+@import url("responsive.css");

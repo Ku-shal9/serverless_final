@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>About - Photo Galli</title>
+    <!-- Bootstrap CSS -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <!-- Custom retro styles -->
+    <link rel="stylesheet" href="../css/style.css" />
+  </head>
+  <body>
+    <!-- ============================================================
+          NAVBAR
+          ============================================================ -->
+    <nav class="navbar navbar-expand-lg">
+      <div class="container-fluid px-3">
+        <!-- Brand -->
+        <a class="navbar-brand" href="../index.html">
+          Photo<span>Galli</span>
+        </a>
+
+        <!-- Mobile: sidebar toggle + hamburger -->
+        <div class="d-flex align-items-center gap-2 d-lg-none">
+          <button
+            id="sidebarToggle"
+            class="sidebar-toggle-btn"
+            aria-label="Toggle history sidebar"
+          >
+            ☰ History
+          </button>
+          <button
+            class="navbar-toggler"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarNav"
+            aria-controls="navbarNav"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span class="navbar-toggler-icon"></span>
+          </button>
+        </div>
+
+        <!-- Nav links -->
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto align-items-lg-center gap-1">
+            <li class="nav-item">
+              <a class="nav-link" href="../index.html">Home</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" href="about.html">About</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="photos.html">Photos</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="pricing.html">💳 Pricing</a>
+            </li>
+            <li class="nav-item">
+              <button id="themeToggleBtn" class="theme-toggle-btn">
+                ☀️ Light
+              </button>
+            </li>
+            <!-- Profile Button -->
+            <li class="nav-item ms-lg-2">
+              <!-- Profile button with avatar -->
+              <button
+                id="profileBtn"
+                class="profile-btn"
+                aria-label="Open profile"
+              >
+                <img
+                  id="navProfileImg"
+                  src=""
+                  alt="Profile"
+                  class="profile-avatar-small"
+                  style="display: none"
+                />
+                <span id="navProfileInitial" class="profile-initial"></span>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <!-- ============================================================
+         ABOUT PAGE CONTENT
+         ============================================================ -->
+    <div class="page-wrapper">
+      <div class="about-page">
+        <!-- Hero Section -->
+        <div class="about-hero">
+          <h1 class="about-hero-title">PHOTO GALLI</h1>
+          <p class="about-hero-subtitle">
+            An AI-powered image generator built with pure frontend web
+            technologies. Type a prompt, get an image — it's that simple.
+          </p>
+        </div>
+
+        <!-- About the Generator -->
+        <div class="card-retro about-section">
+          <h2 class="about-section-title">About the Generator</h2>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.95rem;
+              line-height: 1.8;
+            "
+          >
+            <strong style="color: var(--text-primary)">Photo Galli</strong> is
+            an AI Image Generator Website developed using
+            <strong style="color: var(--accent-primary)">HTML</strong>,
+            <strong style="color: var(--accent-primary)">CSS</strong>, and
+            <strong style="color: var(--accent-primary)">JavaScript</strong>. It
+            allows users to enter a text prompt and generate AI-based images
+            through free API integration.
+          </p>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.95rem;
+              line-height: 1.8;
+              margin-top: 1rem;
+            "
+          >
+            The system takes user input, sends it to AI image generation APIs
+            (<strong>Puter.ai</strong> as primary, with
+            <strong>Pollinations.ai</strong> as fallback), fetches the generated
+            image in real-time, and displays it dynamically on the webpage.
+            Users can save images to their personal gallery, download them, and
+            view their prompt history.
+          </p>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.95rem;
+              line-height: 1.8;
+              margin-top: 1rem;
+            "
+          >
+            This project demonstrates real-world application of frontend web
+            development concepts such as DOM manipulation, API integration,
+            asynchronous JavaScript, responsive UI design, and dynamic content
+            rendering.
+          </p>
+        </div>
+
+        <!-- How It Works -->
+        <div class="card-retro about-section">
+          <h2 class="about-section-title">How It Works</h2>
+          <div class="how-it-works-steps">
+            <div class="step-item">
+              <div class="step-number">01</div>
+              <div class="step-text">
+                <strong style="color: var(--text-primary)">Sign In</strong> —
+                Create an account or use the demo credentials to access the
+                generator.
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">02</div>
+              <div class="step-text">
+                <strong style="color: var(--text-primary)"
+                  >Enter a Prompt</strong
+                >
+                — Describe the image you want in natural language. Be as
+                descriptive as you like!
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">03</div>
+              <div class="step-text">
+                <strong style="color: var(--text-primary)">Generate</strong> —
+                Click the Generate button. The app sends your prompt to
+                <strong>Puter.ai</strong> for real-time AI image generation.
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">04</div>
+              <div class="step-text">
+                <strong style="color: var(--text-primary)"
+                  >View &amp; Save</strong
+                >
+                — The generated image appears instantly. Download it or save it
+                to your personal gallery.
+              </div>
+            </div>
+
+            <div class="step-item">
+              <div class="step-number">05</div>
+              <div class="step-text">
+                <strong style="color: var(--text-primary)"
+                  >Browse Gallery</strong
+                >
+                — Visit the Photos page to see all your saved images in a
+                responsive grid. Click any image to view it full-size with its
+                prompt.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Technologies Used -->
+        <div class="card-retro about-section">
+          <h2 class="about-section-title">Technologies Used</h2>
+          <div class="tech-badges">
+            <span class="tech-badge">HTML5</span>
+            <span class="tech-badge">CSS3</span>
+            <span class="tech-badge">JavaScript (ES6+)</span>
+            <span class="tech-badge">Bootstrap 5</span>
+            <span class="tech-badge">Fetch API</span>
+            <span class="tech-badge">Async / Await</span>
+            <span class="tech-badge">DOM Manipulation</span>
+            <span class="tech-badge">localStorage</span>
+            <span class="tech-badge">CSS Flexbox</span>
+            <span class="tech-badge">CSS Grid</span>
+            <span class="tech-badge">Pollinations.ai API</span>
+            <span class="tech-badge">FLUX Model</span>
+            <span class="tech-badge">Stable Diffusion</span>
+            <span class="tech-badge">Responsive Design</span>
+            <span class="tech-badge">Media Queries</span>
+          </div>
+        </div>
+
+        <!-- Features -->
+        <div class="card-retro about-section">
+          <h2 class="about-section-title">Features</h2>
+          <ul
+            style="
+              color: var(--text-secondary);
+              font-size: 0.9rem;
+              line-height: 2;
+              padding-left: 1.5rem;
+            "
+          >
+            <li>
+              User authentication with role-based access (User &amp; Admin)
+            </li>
+            <li>
+              AI image generation via Pollinations.ai (FLUX, SDXL, Turbo models)
+            </li>
+            <li>Sidebar prompt history (like ChatGPT / Grok)</li>
+            <li>Personal gallery — each user sees only their own images</li>
+            <li>Image modal with full-size view, prompt display, and date</li>
+            <li>Download generated images</li>
+            <li>Rate limiting — 6 free generations per user</li>
+            <li>Admin panel — manage users, view histories, set rate limits</li>
+            <li>Dark / Light mode toggle</li>
+            <li>Fully responsive design (mobile, tablet, desktop)</li>
+            <li>Retro pixel-art inspired UI theme</li>
+          </ul>
+        </div>
+
+        <!-- GitHub Link -->
+        <div class="card-retro about-section text-center">
+          <h2 class="about-section-title">Source Code</h2>
+          <p
+            style="
+              color: var(--text-secondary);
+              font-size: 0.9rem;
+              margin-bottom: 1.5rem;
+            "
+          >
+            This project is open source. View the code, report issues, or
+            contribute on GitHub.
+          </p>
+          <a
+            href="https://github.com/Ku-shal9/AI_Image_Generator"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="btn-retro btn-retro-secondary"
+          >
+            ⬡ View on GitHub
+          </a>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <footer class="page-footer">
+        Photo Galli &copy; 2025 — Built with HTML, CSS &amp; JavaScript for
+        WEB101
+      </footer>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- Auth modules (order matters) -->
+    <script src="../js/auth-const.js"></script>
+    <script src="../js/auth-session.js"></script>
+    <script src="../js/auth-guest.js"></script>
+    <script src="../js/auth-core.js"></script>
+    <script src="../js/auth-theme.js"></script>
+    <script src="../js/auth-nav.js"></script>
+    <script src="../js/auth-profile.js"></script>
+    <script src="../js/auth-user.js"></script>
+    <script src="../js/auth-otp.js"></script>
+    <script src="../js/auth.js"></script>
+
+    <!-- About page initialization -->
+    <script>
+      /**
+       * About page initialization.
+       * Requires authentication, loads theme, updates navbar.
+       */
+      document.addEventListener("DOMContentLoaded", function () {
+        // Guard: must be logged in
+        requireAuth();
+
+        // Apply saved theme
+        loadTheme();
+
+        // Update navbar with user info
+        updateNavbarForUser();
+
+        // Update navbar profile picture
+        const user = getCurrentUser();
+        if (user) {
+          const navProfileImg = document.getElementById("navProfileImg");
+          const navProfileInitial =
+            document.getElementById("navProfileInitial");
+          const storedProfilePic = getUserProfilePicture(user.id);
+
+          if (storedProfilePic && navProfileImg) {
+            navProfileImg.src = storedProfilePic;
+            navProfileImg.style.display = "block";
+            if (navProfileInitial) navProfileInitial.style.display = "none";
+          } else if (navProfileInitial) {
+            const initial = user.username
+              ? user.username.charAt(0).toUpperCase()
+              : "?";
+            navProfileInitial.textContent = initial;
+            navProfileInitial.style.display = "flex";
+            if (navProfileImg) navProfileImg.style.display = "none";
+          }
+        }
+
+        // Theme toggle button
+        const themeBtn = document.getElementById("themeToggleBtn");
+        if (themeBtn) {
+          const isLight = document.body.classList.contains("light-mode");
+          themeBtn.textContent = isLight ? "🌙 Dark" : "☀️ Light";
+          themeBtn.addEventListener("click", toggleTheme);
+        }
+      });
+    </script>
+
+    <!-- Profile modal initialization -->
+    <script>
+      /**
+       * Profile modal functionality.
+       * Handles opening/closing the modal, profile picture upload,
+       * and password change form submission.
+       */
+      document.addEventListener("DOMContentLoaded", function () {
+        // Profile button click handler
+        const profileBtn = document.getElementById("profileBtn");
+        const profileModal = document.getElementById("profileModal");
+        const profileCloseBtn = document.getElementById("profileCloseBtn");
+
+        if (profileBtn && profileModal) {
+          profileBtn.addEventListener("click", function () {
+            profileModal.classList.add("active");
+            document.body.style.overflow = "hidden";
+          });
+        }
+
+        // Close button handler
+        if (profileCloseBtn && profileModal) {
+          profileCloseBtn.addEventListener("click", function () {
+            profileModal.classList.remove("active");
+            document.body.style.overflow = "";
+          });
+        }
+
+        // Close modal when clicking outside
+        if (profileModal) {
+          profileModal.addEventListener("click", function (e) {
+            if (e.target === profileModal) {
+              profileModal.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          });
+        }
+
+        // Profile picture upload
+        const profilePicInput = document.getElementById("profilePicInput");
+        const profileImg = document.getElementById("profileImg");
+        const profileInitial = document.getElementById("profileInitial");
+        const navProfileImg = document.getElementById("navProfileImg");
+        const navProfileInitial = document.getElementById("navProfileInitial");
+
+        if (profilePicInput) {
+          profilePicInput.addEventListener("change", function (e) {
+            const file = e.target.files[0];
+            if (file && file.type.startsWith("image/")) {
+              const reader = new FileReader();
+              reader.onload = function (ev) {
+                const imgData = ev.target.result;
+
+                // Save per-user profile picture
+                const user = getCurrentUser();
+                if (user) {
+                  saveUserProfilePicture(user.id, imgData);
+                }
+
+                // Update modal profile picture
+                if (profileImg) {
+                  profileImg.src = imgData;
+                  profileImg.style.display = "block";
+                }
+                if (profileInitial) {
+                  profileInitial.style.display = "none";
+                }
+
+                // Update navbar profile picture
+                if (navProfileImg) {
+                  navProfileImg.src = imgData;
+                  navProfileImg.style.display = "block";
+                }
+                if (navProfileInitial) {
+                  navProfileInitial.style.display = "none";
+                }
+              };
+              reader.readAsDataURL(file);
+            }
+          });
+        }
+
+        // Password change form
+        const changePasswordForm =
+          document.getElementById("changePasswordForm");
+        const passwordChangeMsg = document.getElementById("passwordChangeMsg");
+
+        if (changePasswordForm) {
+          changePasswordForm.addEventListener("submit", async function (e) {
+            e.preventDefault();
+
+            const oldPassword = document.getElementById("oldPassword").value;
+            const newPassword =
+              document.getElementById("newPasswordChange").value;
+            const confirmPassword =
+              document.getElementById("confirmPassword").value;
+
+            // Validation
+            if (newPassword !== confirmPassword) {
+              if (passwordChangeMsg) {
+                passwordChangeMsg.className =
+                  "alert-retro alert-retro-danger mt-2";
+                passwordChangeMsg.textContent = "Passwords do not match.";
+                passwordChangeMsg.classList.remove("d-none");
+              }
+              return;
+            }
+
+            if (newPassword.length < 4) {
+              if (passwordChangeMsg) {
+                passwordChangeMsg.className =
+                  "alert-retro alert-retro-danger mt-2";
+                passwordChangeMsg.textContent =
+                  "Password must be at least 4 characters.";
+                passwordChangeMsg.classList.remove("d-none");
+              }
+              return;
+            }
+
+            // Simulate password change (in a real app, this would call an API)
+            // For now, just show success message
+            if (passwordChangeMsg) {
+              passwordChangeMsg.className =
+                "alert-retro alert-retro-success mt-2";
+              passwordChangeMsg.textContent = "Password changed successfully!";
+              passwordChangeMsg.classList.remove("d-none");
+
+              // Clear form after 3 seconds
+              setTimeout(function () {
+                changePasswordForm.reset();
+                passwordChangeMsg.classList.add("d-none");
+              }, 3000);
+            }
+          });
+        }
+
+        // Update profile info
+        updateProfileInfo();
+      });
+
+      /**
+       * Updates the profile modal with current user information.
+       */
+      function updateProfileInfo() {
+        const user = getCurrentUser();
+        if (!user) return;
+
+        const profileUsername = document.getElementById("profileUsername");
+        const profileRole = document.getElementById("profileRole");
+        const profileEmail = document.getElementById("profileEmail");
+        const profileRateUsed = document.getElementById("profileRateUsed");
+        const profileRateLimit = document.getElementById("profileRateLimit");
+        const profileRateFill = document.getElementById("profileRateFill");
+
+        if (profileUsername) profileUsername.textContent = user.username;
+        if (profileRole) profileRole.textContent = user.role.toUpperCase();
+        if (profileEmail) profileEmail.textContent = user.email || "Not set";
+
+        const used = user.generationsUsed || 0;
+        const limit = user.rateLimit || 6;
+        if (profileRateUsed) profileRateUsed.textContent = used;
+        if (profileRateLimit) profileRateLimit.textContent = limit;
+        if (profileRateFill) {
+          const pct = limit > 0 ? Math.min(100, (used / limit) * 100) : 0;
+          profileRateFill.style.width = pct + "%";
+          if (pct >= 100) profileRateFill.classList.add("exceeded");
+          else profileRateFill.classList.remove("exceeded");
+        }
+
+        const profileImg = document.getElementById("profileImg");
+        const profileInitial = document.getElementById("profileInitial");
+        const navProfileImg = document.getElementById("navProfileImg");
+        const navProfileInitial = document.getElementById("navProfileInitial");
+        const storedProfilePic = getUserProfilePicture(user.id);
+
+        if (storedProfilePic && profileImg) {
+          profileImg.src = storedProfilePic;
+          profileImg.style.display = "block";
+          if (profileInitial) profileInitial.style.display = "none";
+        } else if (profileInitial) {
+          profileInitial.textContent = user.username
+            ? user.username.charAt(0).toUpperCase()
+            : "?";
+          profileInitial.style.display = "flex";
+          if (profileImg) profileImg.style.display = "none";
+        }
+        if (storedProfilePic && navProfileImg) {
+          navProfileImg.src = storedProfilePic;
+          navProfileImg.style.display = "block";
+          if (navProfileInitial) navProfileInitial.style.display = "none";
+        } else if (navProfileInitial) {
+          navProfileInitial.textContent = user.username
+            ? user.username.charAt(0).toUpperCase()
+            : "?";
+          navProfileInitial.style.display = "flex";
+          if (navProfileImg) navProfileImg.style.display = "none";
+        }
+      }
+
+      // Username edit
+      const editUsernameBtn = document.getElementById("editUsernameBtn");
+      const editUsernameForm = document.getElementById("editUsernameForm");
+      const saveUsernameBtn = document.getElementById("saveUsernameBtn");
+      const cancelUsernameBtn = document.getElementById("cancelUsernameBtn");
+      const newUsernameInput = document.getElementById("newUsernameInput");
+      const usernameChangeMsg = document.getElementById("usernameChangeMsg");
+
+      if (editUsernameBtn) {
+        editUsernameBtn.addEventListener("click", function () {
+          const user = getCurrentUser();
+          if (newUsernameInput)
+            newUsernameInput.value = user ? user.username : "";
+          editUsernameForm.classList.remove("d-none");
+          editUsernameBtn.classList.add("d-none");
+        });
+      }
+      if (cancelUsernameBtn) {
+        cancelUsernameBtn.addEventListener("click", function () {
+          editUsernameForm.classList.add("d-none");
+          editUsernameBtn.classList.remove("d-none");
+          usernameChangeMsg.classList.add("d-none");
+        });
+      }
+      if (saveUsernameBtn) {
+        saveUsernameBtn.addEventListener("click", function () {
+          const val = newUsernameInput ? newUsernameInput.value : "";
+          const result = changeUsername(val);
+          usernameChangeMsg.className = result.success
+            ? "alert-retro alert-retro-success mt-2"
+            : "alert-retro alert-retro-danger mt-2";
+          usernameChangeMsg.textContent = result.message;
+          usernameChangeMsg.classList.remove("d-none");
+          if (result.success) {
+            updateProfileInfo();
+            setTimeout(function () {
+              editUsernameForm.classList.add("d-none");
+              editUsernameBtn.classList.remove("d-none");
+              usernameChangeMsg.classList.add("d-none");
+            }, 1500);
+          }
+        });
+      }
+
+      // Email edit
+      const editEmailBtn = document.getElementById("editEmailBtn");
+      const editEmailForm = document.getElementById("editEmailForm");
+      const saveEmailBtn = document.getElementById("saveEmailBtn");
+      const cancelEmailBtn = document.getElementById("cancelEmailBtn");
+      const newEmailInput = document.getElementById("newEmailInput");
+      const emailChangeMsg = document.getElementById("emailChangeMsg");
+
+      if (editEmailBtn) {
+        editEmailBtn.addEventListener("click", function () {
+          const user = getCurrentUser();
+          if (newEmailInput)
+            newEmailInput.value = user && user.email ? user.email : "";
+          editEmailForm.classList.remove("d-none");
+          editEmailBtn.classList.add("d-none");
+        });
+      }
+      if (cancelEmailBtn) {
+        cancelEmailBtn.addEventListener("click", function () {
+          editEmailForm.classList.add("d-none");
+          editEmailBtn.classList.remove("d-none");
+          emailChangeMsg.classList.add("d-none");
+        });
+      }
+      if (saveEmailBtn) {
+        saveEmailBtn.addEventListener("click", function () {
+          const user = getCurrentUser();
+          if (!user) return;
+          const val = newEmailInput ? newEmailInput.value : "";
+          const result = updateUserEmail(user.id, val);
+          emailChangeMsg.className = result.success
+            ? "alert-retro alert-retro-success mt-2"
+            : "alert-retro alert-retro-danger mt-2";
+          emailChangeMsg.textContent = result.message;
+          emailChangeMsg.classList.remove("d-none");
+          if (result.success) {
+            updateProfileInfo();
+            setTimeout(function () {
+              editEmailForm.classList.add("d-none");
+              editEmailBtn.classList.remove("d-none");
+              emailChangeMsg.classList.add("d-none");
+            }, 1500);
+          }
+        });
+      }
+    </script>
+
+    <!-- ============================================================
+         PROFILE MODAL
+         Shows user profile, rate limit, and password change options.
+         ============================================================ -->
+    <div
+      id="profileModal"
+      class="modal-overlay"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="profileTitle"
+    >
+      <div class="modal-content profile-modal-content" style="max-width: 450px">
+        <!-- Close button -->
+        <button
+          id="profileCloseBtn"
+          class="modal-close"
+          aria-label="Close profile"
+        >
+          ✕
+        </button>
+
+        <div class="modal-body" style="padding-top: 2rem">
+          <h2 id="profileTitle" class="profile-title">My Profile</h2>
+
+          <!-- Profile Picture Section -->
+          <div class="profile-section">
+            <div class="profile-avatar-container">
+              <img
+                id="profileImg"
+                src=""
+                alt="Profile"
+                class="profile-avatar-large"
+                style="display: none"
+              />
+              <div id="profileInitial" class="profile-avatar-placeholder"></div>
+              <label for="profilePicInput" class="profile-pic-upload-btn">
+                📷 Change Photo
+              </label>
+              <input
+                type="file"
+                id="profilePicInput"
+                accept="image/*"
+                style="display: none"
+              />
+            </div>
+          </div>
+
+          <!-- User Info -->
+          <div class="profile-section">
+            <div class="profile-info-row" id="profileUsernameRow">
+              <span class="profile-label">Username:</span>
+              <span id="profileUsername" class="profile-value"></span>
+              <button
+                type="button"
+                id="editUsernameBtn"
+                class="btn-retro btn-retro-ghost btn-retro-sm"
+                style="
+                  margin-left: auto;
+                  font-size: 0.7rem;
+                  padding: 0.15rem 0.5rem;
+                "
+              >
+                ✏ Edit
+              </button>
+            </div>
+            <div
+              id="editUsernameForm"
+              class="d-none"
+              style="margin-top: 0.5rem"
+            >
+              <div style="display: flex; gap: 0.5rem; align-items: center">
+                <input
+                  type="text"
+                  id="newUsernameInput"
+                  class="form-control-retro"
+                  placeholder="New username"
+                  style="flex: 1; font-size: 0.85rem"
+                />
+                <button
+                  type="button"
+                  id="saveUsernameBtn"
+                  class="btn-retro btn-retro-primary btn-retro-sm"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  id="cancelUsernameBtn"
+                  class="btn-retro btn-retro-ghost btn-retro-sm"
+                >
+                  ✕
+                </button>
+              </div>
+              <div
+                id="usernameChangeMsg"
+                class="d-none mt-2"
+                style="font-size: 0.8rem"
+                role="alert"
+              ></div>
+            </div>
+            <div class="profile-info-row" style="margin-top: 0.5rem">
+              <span class="profile-label">Email:</span>
+              <span
+                id="profileEmail"
+                class="profile-value"
+                style="font-size: 0.82rem"
+              ></span>
+              <button
+                type="button"
+                id="editEmailBtn"
+                class="btn-retro btn-retro-ghost btn-retro-sm"
+                style="
+                  margin-left: auto;
+                  font-size: 0.7rem;
+                  padding: 0.15rem 0.5rem;
+                "
+              >
+                ✏ Edit
+              </button>
+            </div>
+            <div id="editEmailForm" class="d-none" style="margin-top: 0.5rem">
+              <div style="display: flex; gap: 0.5rem; align-items: center">
+                <input
+                  type="email"
+                  id="newEmailInput"
+                  class="form-control-retro"
+                  placeholder="your@email.com"
+                  style="flex: 1; font-size: 0.85rem"
+                />
+                <button
+                  type="button"
+                  id="saveEmailBtn"
+                  class="btn-retro btn-retro-primary btn-retro-sm"
+                >
+                  Save
+                </button>
+                <button
+                  type="button"
+                  id="cancelEmailBtn"
+                  class="btn-retro btn-retro-ghost btn-retro-sm"
+                >
+                  ✕
+                </button>
+              </div>
+              <div
+                id="emailChangeMsg"
+                class="d-none mt-2"
+                style="font-size: 0.8rem"
+                role="alert"
+              ></div>
+            </div>
+            <div class="profile-info-row" style="margin-top: 0.5rem">
+              <span class="profile-label">Role:</span>
+              <span id="profileRole" class="profile-value"></span>
+            </div>
+          </div>
+
+          <!-- Rate Limit Display -->
+          <div class="profile-section">
+            <h3 class="profile-section-title">Generation Limit</h3>
+            <div class="profile-rate-bar">
+              <div
+                id="profileRateFill"
+                class="profile-rate-fill"
+                style="width: 0%"
+              ></div>
+            </div>
+            <div class="profile-rate-text">
+              <span id="profileRateUsed">0</span> /
+              <span id="profileRateLimit">6</span> generations used
+            </div>
+          </div>
+
+          <!-- Change Password Section -->
+          <div class="profile-section">
+            <h3 class="profile-section-title">Change Password</h3>
+            <form id="changePasswordForm" class="profile-form">
+              <div class="form-group">
+                <label class="form-label" for="oldPassword"
+                  >Current Password</label
+                >
+                <input
+                  type="password"
+                  id="oldPassword"
+                  class="form-control-retro"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="newPasswordChange"
+                  >New Password</label
+                >
+                <input
+                  type="password"
+                  id="newPasswordChange"
+                  class="form-control-retro"
+                  required
+                  minlength="4"
+                />
+              </div>
+              <div class="form-group">
+                <label class="form-label" for="confirmPassword"
+                  >Confirm New Password</label
+                >
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  class="form-control-retro"
+                  required
+                  minlength="4"
+                />
+              </div>
+              <button type="submit" class="btn-retro btn-retro-primary w-100">
+                🔒 Update Password
+              </button>
+            </form>
+            <div id="passwordChangeMsg" class="d-none mt-2" role="alert"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
