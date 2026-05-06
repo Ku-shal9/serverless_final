@@ -4,7 +4,7 @@
  */
 
 async function dbSignUp(username, email, password) {
-  const res = await fetch("/api/auth-signup", {
+  const res = await pgFetch("/auth-signup", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, email, password }),
@@ -17,7 +17,7 @@ async function dbSignUp(username, email, password) {
 }
 
 async function dbLogin(username, password, role) {
-  const res = await fetch("/api/auth-login", {
+  const res = await pgFetch("/auth-login", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username, password, role }),
@@ -59,7 +59,7 @@ function upsertLocalUserFromDb(dbUser) {
 }
 
 async function dbSyncSessionIntoLocalStorage() {
-  const res = await fetch("/api/auth-me");
+  const res = await pgFetch("/auth-me");
   const data = await res.json().catch(function () {
     return {};
   });

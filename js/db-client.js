@@ -16,7 +16,7 @@ async function ensureDbUserId() {
   const user = typeof getCurrentUser === "function" ? getCurrentUser() : null;
   if (!user || !user.username) return null;
 
-  const res = await fetch("/api/db-bootstrap-user", {
+  const res = await pgFetch("/db-bootstrap-user", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ username: user.username, email: user.email || null }),
@@ -38,7 +38,7 @@ async function dbLogGeneration(payload) {
   const userId = await ensureDbUserId();
   if (!userId) return;
 
-  await fetch("/api/db-generations", {
+  await pgFetch("/db-generations", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, ...payload }),
@@ -49,7 +49,7 @@ async function dbAddPrompt(prompt) {
   const userId = await ensureDbUserId();
   if (!userId) return;
 
-  await fetch("/api/db-prompts", {
+  await pgFetch("/db-prompts", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ userId, prompt }),
@@ -60,7 +60,7 @@ async function dbSaveGallery(imageData) {
   const userId = await ensureDbUserId();
   if (!userId) return;
 
-  await fetch("/api/db-gallery", {
+  await pgFetch("/db-gallery", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({

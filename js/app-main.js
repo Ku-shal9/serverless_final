@@ -153,7 +153,7 @@ async function generateImage() {
 
   try {
     console.log("[Photo Galli] Calling server HF endpoint...");
-    const res = await fetch("/api/generate-image", {
+    const res = await pgFetch("/generate-image", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

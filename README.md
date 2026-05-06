@@ -1,6 +1,6 @@
 # Photo Galli
 
-AI-powered image generator with user authentication, rate limiting, and a retro-themed interface. Users can generate images from text prompts using Hugging Face models via Vercel serverless API routes or Puter.ai as a fallback.
+AI-powered image generator with user authentication, rate limiting, and a retro-themed interface. Users can generate images from text prompts using Hugging Face models via a backend API (designed for AWS ECS) or Puter.ai as a fallback.
 
 ---
 
@@ -24,8 +24,8 @@ AI-powered image generator with user authentication, rate limiting, and a retro-
 | Frontend  | HTML5, CSS3, Vanilla JavaScript                                        |
 | Styling   | Bootstrap 5 (grid/utilities), custom modular CSS                       |
 | Auth      | localStorage-based session, EmailJS for OTP emails                     |
-| Image API | Hugging Face Inference API (via Vercel API route), Puter.ai (fallback) |
-| Hosting   | Vercel (static site + serverless functions)                            |
+| Image API | Hugging Face Inference API (via ECS backend API), Puter.ai (fallback) |
+| Hosting   | Frontend: Vercel (static) • Backend: AWS ECS (API)                    |
 
 ---
 
@@ -97,13 +97,10 @@ AI_Image_Generator/
 |   |-- app.js              # Home page init
 |   |-- gallery.js          # Photos page
 |   |-- admin.js            # Admin panel
-|-- api/
-|   |-- generate-image.js       # HF proxy (server-side token)
-|   |-- db-migrate.js           # DB migration endpoint
-|   |-- db-users.js             # Users API
-|   |-- db-generations.js       # Generation logs API
-|   |-- db-gallery.js           # Gallery API
-|   |-- db-prompts.js           # Prompt history API
+|-- backend/
+|   |-- server.js               # Express API (ECS-ready)
+|   |-- src/
+|       |-- routes.js             # API endpoints (auth/db/HF proxy)
 |-- README.md
 ```
 
@@ -129,12 +126,13 @@ AI_Image_Generator/
 
 2. Open `index.html` in a browser, or serve the folder with any static server (e.g. Live Server, `python -m http.server`).
 
-3. For full image generation locally (Hugging Face), use Vercel local dev:
+3. For full image generation locally (Hugging Face), run the backend locally:
    ```
-   npm install -g vercel
-   vercel dev
+   cd backend
+   npm install
+   npm run dev
    ```
-   Then open the URL shown (e.g. http://localhost:3000).
+   Then open the frontend with a static server and set `window.PG_API_BASE` to your backend URL.
 
 ---
 
@@ -144,19 +142,25 @@ Configure these in Vercel Project Settings > Environment Variables:
 
 | Variable     | Description                            | Required                |
 | ------------ | -------------------------------------- | ----------------------- |
-| HF_TOKEN     | Hugging Face API token (read)          | Yes (for HF generation) |
-| DATABASE_URL | Neon Postgres connection string        | Yes (for DB features)   |
+| HF_TOKEN     | Hugging Face API token (read)          | Backend only            |
+| DATABASE_URL | Neon Postgres connection string        | Backend only            |
+| CORS_ORIGINS | Allowed frontend origins (comma list)  | Backend only            |
 
 EmailJS credentials are in `auth-const.js` (service ID, template ID, public key). For production, consider moving these to environment variables.
 
 ---
 
-## Deployment (Vercel)
+## Deployment
 
-1. Connect the repository to Vercel.
-2. Build settings: leave build command empty; publish directory: `.` (or project root).
-3. Add `HF_TOKEN` and `DATABASE_URL` in Environment Variables.
-4. Deploy.
+### Frontend (Vercel)
+
+- Deploy the static site (this repo root).
+- Set `window.PG_API_BASE` in the HTML to your ECS backend URL.
+
+### Backend (AWS ECS)
+
+- Deploy `backend/` as a container on ECS.
+- Configure backend env vars: `HF_TOKEN`, `DATABASE_URL`, `CORS_ORIGINS`, `PORT`.
 
 ---
 
@@ -171,7 +175,7 @@ EmailJS credentials are in `auth-const.js` (service ID, template ID, public key)
 
 ## Local vs Production Behavior
 
-- **On Vercel**: Image generation uses `/api/generate-image`, which calls Hugging Face with `HF_TOKEN`. If that fails, Puter.ai is used as fallback.
+- **On Vercel**: the frontend calls your ECS backend (e.g. `https://api.example.com/generate-image`). If that fails, Puter.ai is used as fallback.
 - **On localhost**: If the server route is unavailable, the app falls back to Puter.ai. To test Hugging Face locally, run `vercel dev`.
 
 ---
