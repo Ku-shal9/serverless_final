@@ -258,6 +258,23 @@ async function generateImage() {
   renderSidebarHistory();
   updateRateLimitUI();
 
+  // Best-effort DB persistence (if logged in and API configured)
+  try {
+    if (typeof dbLogGeneration === "function") {
+      dbLogGeneration({
+        prompt: currentImageData.prompt,
+        imageUrl: currentImageData.url,
+        source: currentImageData.source || "unknown",
+        model: currentImageData.model || "unknown",
+        seed,
+        status: "success",
+      });
+    }
+    if (typeof dbAddPrompt === "function") {
+      dbAddPrompt(currentImageData.prompt);
+    }
+  } catch (_) {}
+
   console.log("[Photo Galli] Image generated successfully from:", imageSource);
 }
 
@@ -300,6 +317,13 @@ function saveToGallery() {
   }
 
   addToUserGallery(currentImageData);
+
+  // Best-effort DB persistence
+  try {
+    if (typeof dbSaveGallery === "function") {
+      dbSaveGallery(currentImageData);
+    }
+  } catch (_) {}
 
   if (freshSaveBtn) {
     freshSaveBtn.textContent = "✓ Saved!";
