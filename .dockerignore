@@ -1,0 +1,9 @@
+node_modules
+.git
+.cursor
+terminals
+agent-transcripts
+.DS_Store
+npm-debug.log*
+*.log
+

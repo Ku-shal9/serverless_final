@@ -27,7 +27,8 @@ app.get("/health", (req, res) => res.json({ ok: true }));
 app.use(require("./src/routes.js"));
 
 const port = Number(process.env.PORT || 3001);
-app.listen(port, () => {
+// Bind to all interfaces so the container port is reachable by ECS networking.
+app.listen(port, "0.0.0.0", () => {
   // eslint-disable-next-line no-console
   console.log(`[photo-galli-backend] listening on :${port}`);
 });
